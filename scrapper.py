@@ -6,11 +6,12 @@ import webbrowser
 session = requests.session()
 print "Enter what topics questions you want to search on Quora"
 topic=raw_input()
+#User enters a topic to be searched
 url="http://www.quora.com/"+topic+"/rss"
 #req = session.get('http://www.quora.com/Big-Data/rss')
 req = session.get(url)
 doc = BeautifulSoup(req.content)
-
+#extract body
 print doc.title
 abc = doc.findAll('body')
 #abc = doc.findAll('span',{ "base" : "http://www.quora.com/Big-Data/rss" })
@@ -33,8 +34,12 @@ for i in range(0,len(test)):
 #print re.findall(r"(u'com(.?)<div>)",total)
 print "\n Enter Question no you want me to search"
 quest=int(raw_input())
+#search a perticular question
 q = re.compile('com/(.*?)<div').findall(test[quest])
 str1=''.join(q)
+#read question in quora
 url="http://www.quora.com/"+str1
 new =2
 webbrowser.open(url,new=new)
+
+
